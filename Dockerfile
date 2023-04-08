@@ -1,5 +1,6 @@
-FROM menci/archlinuxarm:latest@sha256:4c544d2b55dcf13e4c11373a76826ece387073f0dd76f1a079291e0407f00af8
+FROM menci/archlinuxarm:latest
 
+# https://github.com/pikvm/pi-builder/blob/master/Makefile
 ARG BOARD=rpi4
 ENV BOARD $BOARD
 
@@ -18,6 +19,7 @@ ENV PIKVM_REPO_URL $PIKVM_REPO_URL
 RUN pacman-key --init \
     && pacman-key --populate archlinuxarm
 
+# https://github.com/pikvm/pi-builder/blob/master/stages/pikvm-repo/Dockerfile.part
 RUN ( \
         mkdir -p /etc/gnupg \
         && echo standard-resolver >> /etc/gnupg/dirmngr.conf \
